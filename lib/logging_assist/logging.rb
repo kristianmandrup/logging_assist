@@ -8,8 +8,8 @@ module Rails::Assist
     attr_reader :logger
 
     def logfile
-      return RSpec::Generator.logfile if defined? RSpec::Generator
-      @logfile || 'logging.log'
+      gen_logfile = RSpec::Generator.logfile if defined?(RSpec::Generator) 
+      gen_logfile || @logfile || 'logging.log'
     end
 
     def logfile= file
