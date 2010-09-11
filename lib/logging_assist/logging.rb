@@ -20,7 +20,7 @@ module Rails::Assist
     DEBUG_LVS = [:debug, :info, :warn, :error, :fatal]
 
     def initialize options = {:level => :debug}
-      Logger.global.level = Log4r::ALL
+      Log4r::Logger.global.level = Log4r::ALL
       @logger ||= Log4r::Logger.new('logger')            
       add_stdout options[:level]
     end
