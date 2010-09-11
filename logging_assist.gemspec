@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
      "lib/logging_assist.rb",
      "lib/logging_assist/logging.rb",
      "lib/logging_assist/namespaces.rb",
+     "logging_assist.gemspec",
      "spec/logging_assist/logging_spec.rb",
      "spec/spec_helper.rb"
   ]
