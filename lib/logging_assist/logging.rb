@@ -7,6 +7,15 @@ module Rails::Assist
 
     attr_reader :logger
 
+    def logfile
+      return RSpec::Generator.logfile if defined? RSpec::Generator
+      @logfile || 'logging.log'
+    end
+
+    def logfile= file
+      @logfile = file
+    end
+
     # DEBUG < INFO < WARN < ERROR < FATAL
     DEBUG_LVS = [:debug, :info, :warn, :error, :fatal]
 
@@ -36,7 +45,7 @@ module Rails::Assist
     end
     
     def add_logfile level = :debug
-      add_outputter FileOutputter.new "logfile", :filename => RSpec::Generator.logfile, :formatter => simple_formatter, :level => get_lv(level)
+      add_outputter FileOutputter.new "logfile", :filename => logfile, :formatter => simple_formatter, :level => get_lv(level)
     end    
 
     def debug msg
