@@ -2,6 +2,12 @@ require 'active_support/inflector'
 require 'log4r'
 include Log4r
 
+module Rails::Assist::BasicLogging
+  def log
+    @log ||= Rails::Assist::Logging.new 
+  end  
+end
+
 module Rails::Assist
   class Logging    
 

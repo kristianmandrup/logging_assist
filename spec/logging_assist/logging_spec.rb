@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 class Abra
-  def log
-    @log ||= Rails::Assist::Logging.new 
-  end  
+  include Rails::Assist::BasicLogging
 end
 
 describe 'BasicGenerator' do  
