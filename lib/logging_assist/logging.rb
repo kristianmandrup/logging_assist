@@ -50,8 +50,9 @@ module Rails::Assist
       add_outputter Log4r::StdoutOutputter.new 'console', :formatter => simple_formatter, :level => get_lv(level)
     end
     
-    def add_logfile level = :debug
-      add_outputter FileOutputter.new "logfile", :filename => logfile, :formatter => simple_formatter, :level => get_lv(level)
+    def add_logfile options = {:level => :debug}
+      level = options[:level]
+      add_outputter FileOutputter.new "logfile", :filename => options[:logfile] || logfile, :formatter => simple_formatter, :level => get_lv(level)
     end    
 
     def debug msg
