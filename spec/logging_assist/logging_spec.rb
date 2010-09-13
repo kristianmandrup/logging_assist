@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 class Abra
-  include Rails::Assist::BasicLogging
+  include Rails::Assist::BasicLogger
 end
 
 describe 'BasicGenerator' do  
@@ -10,13 +10,13 @@ describe 'BasicGenerator' do
   end
 
   it "should log to stdout" do    
-    @abra.log.debug 'debugged msg'
-    @abra.log.info  'info msg here'    
+    @abra.logger.debug 'debugged msg'
+    @abra.logger.info  'info msg here'    
   end
     
   it "should log to logfile" do    
-    @abra.log.add_logfile :logfile => 'here.log'    
-    @abra.log.debug 'debugged msg'
-    @abra.log.info  'info msg here'    
+    @abra.logger.add_logfile :logfile => 'here.log'    
+    @abra.logger.debug 'debugged msg'
+    @abra.logger.info  'info msg here'    
   end
 end
