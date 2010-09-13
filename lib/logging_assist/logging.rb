@@ -50,9 +50,8 @@ module Rails::Assist
       add_outputter Log4r::StdoutOutputter.new 'console', :formatter => simple_formatter, :level => get_lv(level)
     end
     
-    def add_logfile options = {:level => :debug}
-      level = options[:level]
-      add_outputter FileOutputter.new "logfile", :filename => options[:logfile] || logfile, :formatter => simple_formatter, :level => get_lv(level)
+    def add_logfile options = {}
+      add_outputter FileOutputter.new "logfile", :filename => options[:logfile] || logfile, :formatter => simple_formatter, :level => get_lv(options[:level] || :debug)
     end    
 
     def debug msg
@@ -98,7 +97,7 @@ module Rails::Assist
     protected
 
     def get_lv level = :debug
-      raise ArgumentError, "Debug lv must be one of #{DEBUG_LVS}" if !DEBUG_LVS.include? level
+      raise ArgumentError, "Debug lv must be one of #{DEBUG_LVS}, was #{level}" if !DEBUG_LVS.include? level
       "Log4r::#{level.to_s.upcase}".constantize
     end      
 

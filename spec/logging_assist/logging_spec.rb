@@ -15,7 +15,7 @@ describe 'BasicGenerator' do
   end
     
   it "should log to logfile" do    
-    @abra.log.add_logfile    
+    @abra.log.add_logfile :logfile => 'here.log'    
     @abra.log.debug 'debugged msg'
     @abra.log.info  'info msg here'    
   end
