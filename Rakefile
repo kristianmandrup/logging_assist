@@ -8,7 +8,7 @@ begin
     gem.homepage = "http://github.com/kristianmandrup/generator_assist"
     gem.authors = ["Kristian Mandrup"]
     gem.add_development_dependency  "rspec",        "~> 2.0.0.beta.22"
-    gem.add_dependency              "require_all",  "~> 1.1.0"    
+    gem.add_dependency              "require_all",  "~> 1.2.0"    
     gem.add_dependency              "sugar-high",   "~> 0.2.10"
     gem.add_dependency              "log4r",        "~> 1.1.8"
         
