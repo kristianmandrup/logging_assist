@@ -2,13 +2,13 @@ require 'active_support/inflector'
 require 'log4r'
 include Log4r
 
-module Rails::Assist::BasicLogger
+module Rails3::Assist::BasicLogger
   def logger
-    @logger ||= Rails::Assist::Logging.new 
+    @logger ||= Rails3::Assist::Logging.new 
   end  
 end
 
-module Rails::Assist
+module Rails3::Assist
   class Logging    
 
     attr_reader :logger

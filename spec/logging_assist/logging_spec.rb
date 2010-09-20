@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 class Abra
-  include Rails::Assist::BasicLogger
+  include Rails3::Assist::BasicLogger
 end
 
 describe 'BasicGenerator' do  
