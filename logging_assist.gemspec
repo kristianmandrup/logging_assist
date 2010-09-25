@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
-  s.date = %q{2010-09-23}
+  s.date = %q{2010-09-25}
   s.description = %q{Wraps logging in a nice and convenient way making it easy to apply on any project}
   s.email = %q{kmandrup@gmail.com}
   s.extra_rdoc_files = [
