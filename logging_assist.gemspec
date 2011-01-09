@@ -14,13 +14,13 @@ Gem::Specification.new do |s|
   s.email = %q{kmandrup@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
-    "README.markdown"
+    "README.textile"
   ]
   s.files = [
     ".document",
     ".rspec",
     "LICENSE",
-    "README.markdown",
+    "README.textile",
     "Rakefile",
     "VERSION",
     "lib/logging_assist.rb",
