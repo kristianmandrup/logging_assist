@@ -1,5 +1,5 @@
 require 'active_support/inflector'
-require 'log4r'
+require 'log4r-color'
 include Log4r
 
 module Rails3::Assist::BasicLogger
@@ -11,7 +11,9 @@ end
 module Rails3::Assist
   class Logging    
 
-    attr_reader :logger
+    attr_reader :logger 
+    
+    attr_accessor :info_color, :debug_color, :warn_color, :error_color, :fatal_color      
 
     def logfile
       gen_logfile = RSpec::Generator.logfile if defined?(RSpec::Generator) 
@@ -23,12 +25,13 @@ module Rails3::Assist
     end
 
     # DEBUG < INFO < WARN < ERROR < FATAL
-    DEBUG_LVS = [:debug, :info, :warn, :error, :fatal]
+    DEBUG_LVS = [:debug, :info, :warn, :error, :fatal]    
 
     def initialize options = {:level => :debug}
       Log4r::Logger.global.level = Log4r::ALL
       @logger ||= Log4r::Logger.new('logger')            
       add_stdout options[:level]
+      color_options = options[:color_options] if options
     end
 
     def add_outputter outputter
@@ -47,8 +50,46 @@ module Rails3::Assist
     end      
 
     def add_stdout level = :debug
-      add_outputter Log4r::StdoutOutputter.new 'console', :formatter => simple_formatter, :level => get_lv(level)
+      add_outputter Log4r::ColorOutputter.new 'color', :formatter => simple_formatter, :level => get_lv(level), :colors => default_colors
     end
+
+    def default_colors  
+      DEBUG_LVS.inject({}) do |res, lv|
+        res[lv] = send :"default_#{lv}_color"
+        res
+      end
+    end
+
+    def set_color name, color_options = {}
+      send :"#{name}_color=", color_options
+      Outputter['color'].colors[name.to_sym] = color_options
+      Outputter['color'].colors
+    end
+
+    # def available_levels
+    #   DEBUG_LVS # [:debug, :info, :warn, :error, :fatal]
+    # end
+
+    def default_debug_color
+      :cyan
+    end
+
+    def default_info_color
+      :light_blue
+    end
+
+    def default_warn_color
+      :yellow
+    end
+
+    def default_error_color
+      :red
+    end
+
+    def default_fatal_color
+      {:color => :white, :background => :red}
+    end
+
     
     def add_logfile options = {}
       add_outputter FileOutputter.new "logfile", :filename => options[:logfile] || logfile, :formatter => simple_formatter, :level => get_lv(options[:level] || :debug)
@@ -113,7 +154,7 @@ module Rails3::Assist
     end
 
     def draw_line options = {:size => 40, :char => '-'}
-      options[:char] * options[:size]
+      options[:char] * (options[:size] || 40)
     end             
   end
 end

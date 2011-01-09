@@ -9,8 +9,9 @@ begin
     gem.authors = ["Kristian Mandrup"]
     gem.add_development_dependency  "rspec",        ">= 2.0.0"
     gem.add_dependency              "require_all",  "~> 1.2.0"    
+    gem.add_dependency              "colorize",     "~> 0.5.8"    
     gem.add_dependency              "sugar-high",   "~> 0.3.0"
-    gem.add_dependency              "log4r",        "~> 1.1.8"
+    gem.add_dependency              "log4r-color",  ">= 1.2"
         
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
