@@ -37,7 +37,10 @@ describe 'BasicGenerator' do
     obj.logger.warn  'black on white!'      
     
     obj.logger.warn_color[:color].should == :black
-    obj.logger.warn_color[:background].should == :white    
+    obj.logger.warn_color[:background].should == :white 
+    
+    obj.logger.remove_outputs :color   
+    obj.logger.warn  'should not be printed to screen'          
   end
     
   it "should log to logfile" do    

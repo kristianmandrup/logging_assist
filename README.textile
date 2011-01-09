@@ -1,0 +1,105 @@
+h1. Logging assist
+
+A wrapper of "Log4r-color":https://github.com/kristianmandrup/log4r-color to make it easy to add logging to your projects. 
+This project was originally born from a need to make it easy to debug Rails 3 Generators. It is used extensively in the "Cream":https://github.com/kristianmandrup/cream framework
+
+h2. Install
+
+<pre>gem install logging_assist</pre>
+
+h2. Usage
+
+The default logger logs to a _ColorOutputter_ with a default color scheme for each log level.
+
+h3. Setup
+
+Inside any class you want to add logging
+
+<pre>class MyClassToBeLogged
+  include Rails3::Assist::BasicLogger
+  ...
+end  
+</pre>
+
+h3. Logging
+
+You can use the methods _#debug_, _#info_, _#warn_, _#error_ and _#fatal_
+
+<pre>def my_method
+  logger.debug 'wtf??'
+  logger.info  "now inside #my_method"
+end  
+</pre>
+
+h3. Add outputters
+
+You can easily add one or more file outputters to the mix
+
+<pre>class MyClassToBeLogged
+
+  def initialize
+    # setup logging file
+    logger.add_logfile :logfile => 'here.log'
+  end
+end  
+</pre>
+
+h4. Custom outputters
+
+For custom outputters (any supported by log4r) you can use <code>logger.add_outputter(my_custom_outputter)</code>  
+Here _my_custom_outputter_ must be an instance of a subclass of _Log4r::Outputter_ 
+
+You can remove the outputter like this <code>logger.remove_outputter(my_custom_outputter)</code>
+
+h4. Advanced outputter configuration
+
+Every logger also takes a _:formatter_ and _:level_ option. Use like this: 
+
+<pre>def initialize
+  my_custom_formatter = PatternFormatter.new(:pattern => "[%l] %d :: %.40m")
+  logger.add_logfile :logfile => 'here.log', :formatter => my_custom_formatter, :level => :info
+end  
+</pre>
+
+See "PatternFormatter docs":http://log4r.sourceforge.net/rdoc/files/log4r/formatter/patternformatter_rb.html for more info on customizing the output formats
+
+Currently the formatter and level of an outputter can only (easily) be set on creation when added.
+
+h3. Remove outputters
+
+You can remove color output to the console like this:
+
+<pre>class MyClassToBeLogged
+
+  def initialize
+    # setup logging file
+    logger.remove_outputs :color
+  end
+end  
+</pre>
+
+Remove file outputs <code>logger.remove_outputs :file</code>
+
+Here The following convention: _Log4r::[name]Outputter_ is used to find the types of Outputter to remove.
+
+h3. Define custom color schemes
+
+A color scheme can be set for any log level like this
+
+<code>obj.logger.set_color :info, {:color => :green, :background => :white}</code>
+
+Please see "colorize":https://github.com/fazibear/colorize for more info. Use <code>String.colors</code> to see list of available colors.
+
+h2. Note on Patches/Pull Requests
+ 
+* Fork the project.
+* Make your feature addition or bug fix.
+* Add tests for it. This is important so I don't break it in a
+  future version unintentionally.
+* Commit, do not mess with rakefile, version, or history.
+  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
+* Send me a pull request. Bonus points for topic branches.
+
+h2. Copyright
+
+Copyright (c) 2010 Kristian Mandrup. See LICENSE for details.

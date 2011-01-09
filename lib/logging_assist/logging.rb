@@ -1,5 +1,6 @@
 require 'active_support/inflector'
 require 'log4r-color'
+require 'active_support'
 include Log4r
 
 module Rails3::Assist::BasicLogger
@@ -41,6 +42,19 @@ module Rails3::Assist
     def remove_outputter outputter
       logger.outputters.delete(outputter)
     end      
+
+    def remove_outputs type
+      klass = "Log4r::#{type.to_s.classify}Outputter".constantize
+      logger.outputters.each do |outp|
+        logger.outputters.delete(outp) if outp.kind_of? klass
+      end
+    end
+
+    # def remove_all_file_outputs
+    #   logger.outputters.each do |outp|
+    #     logger.outputters.delete(outp) if outp.kind_of? Log4r::FileOutputter
+    #   end
+    # end
 
     def debug_lv= level
       raise ArgumentError, "Debug lv must be one of #{DEBUG_LVS}" if !DEBUG_LVS.include? lv
