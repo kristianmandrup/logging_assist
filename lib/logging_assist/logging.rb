@@ -1,6 +1,5 @@
 require 'active_support/inflector'
 require 'log4r-color'
-require 'active_support'
 include Log4r
 
 module Rails3::Assist::BasicLogger
