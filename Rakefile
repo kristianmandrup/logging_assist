@@ -7,10 +7,10 @@ begin
     gem.email = "kmandrup@gmail.com"
     gem.homepage = "http://github.com/kristianmandrup/generator_assist"
     gem.authors = ["Kristian Mandrup"]
-    gem.add_development_dependency  "rspec",          ">= 2.0.1"
+    gem.add_development_dependency  "rspec",          ">= 2.4.1"
     gem.add_dependency              "require_all",    "~> 1.2.0"    
     gem.add_dependency              "colorize",       "~> 0.5.8"    
-    gem.add_dependency              "sugar-high",     ">= 0.3.1"
+    gem.add_dependency              "sugar-high",     "~> 0.4.0"
     gem.add_dependency              "log4r-color",    ">= 1.2"
     gem.add_dependency              "activesupport",  ">= 3.0.1"
     
