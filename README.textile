@@ -16,7 +16,7 @@ h3. Setup
 Inside any class you want to add logging
 
 <pre>class MyClassToBeLogged
-  include Rails3::Assist::BasicLogger
+  include RailsAssist::BasicLogger
   ...
 end  
 </pre>

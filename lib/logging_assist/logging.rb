@@ -2,13 +2,15 @@ require 'active_support/inflector'
 require 'log4r-color'
 include Log4r
 
-module Rails3::Assist::BasicLogger
-  def logger
-    @logger ||= Rails3::Assist::Logging.new 
-  end  
+module RailsAssist
+  module BasicLogger
+    def logger
+      @logger ||= RailsAssist::Logging.new 
+    end  
+  end
 end
 
-module Rails3::Assist
+module RailsAssist
   class Logging    
 
     attr_reader :logger 

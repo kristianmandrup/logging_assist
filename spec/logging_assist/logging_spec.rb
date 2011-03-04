@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 class Abra
-  include Rails3::Assist::BasicLogger
+  include RailsAssist::BasicLogger
 end
 
 def do_logging obj

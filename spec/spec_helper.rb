@@ -1,4 +1,4 @@
-require 'rspec/core'
+require 'rspec'
 require 'logging_assist'
 
 RSpec.configure do |config|  
